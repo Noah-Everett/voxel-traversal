@@ -3,6 +3,7 @@
 #include <gtest/gtest.h>
 
 #include <limits>
+#include <cmath>
 
 #include "voxel_traversal.h"
 
@@ -38,9 +39,9 @@ class TestVoxel2x2x2Intersect : public ::testing::Test {
   using C3 = typename Grid3DSpatialDef<float_type>::Index3d;
   using R = Ray<float_type>;
 
-  static const constexpr float_type SQRT2 = sqrt(2.0);
-  static const constexpr float_type HALF_SQRT2 = 0.5 * SQRT2;
-  static const constexpr float_type SQRT3 = sqrt(3.0);
+  static constexpr float_type SQRT2 = 1.41421356237f;
+  static constexpr float_type HALF_SQRT2 = 0.5 * SQRT2;
+  static constexpr float_type SQRT3 = 1.73205080757f;
 
   void SetUp() override {
     const V3 bound_min(0.0, 0.0, 0.0);

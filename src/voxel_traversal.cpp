@@ -47,7 +47,7 @@ bool setupTraversal(const Ray<typename Grid::float_t>& ray, const Grid& grid,
       tmin_temp;
 
   tmax = (ray.direction().array() == 0.0).select(tmax_temp, tmax_xyz);
-  const auto step_float = ray.direction().template array().sign().eval();
+  const auto step_float = ray.direction().array().sign().eval();
   step_index = step_float.template cast<int_type>().eval();
   delta = (step_index == 0)
               .select(tmax_temp,
@@ -206,6 +206,13 @@ bool traverseVoxelGrid(const Ray<float_type>& ray,
 }
 
 // instantiations
+template bool rayBoxIntersection<float>(const Ray<float>& ray, const Grid3DSpatialDef<float>& grid,
+                                        float& tmin, float& tmax, float t0, float t1);
+template bool rayBoxIntersection<double>(const Ray<double>& ray, const Grid3DSpatialDef<double>& grid,
+                                         double& tmin, double& tmax, double t0, double t1);
+template bool rayBoxIntersection<long double>(const Ray<long double>& ray, const Grid3DSpatialDef<long double>& grid,
+                                              long double& tmin, long double& tmax, long double t0, long double t1);
+
 template bool traverseVoxelGrid<float>(const Ray<float>&,
                                        const Grid3DSpatialDef<float>&,
                                        TraversedVoxels<float>&, float, float);
